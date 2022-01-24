@@ -2,6 +2,7 @@ import './Login.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../features/userSlice'
+import moment from 'moment';
 
 const Login = () => {
   const [email, setEmail] = useState("Email");
@@ -28,7 +29,7 @@ const Login = () => {
       userId: data.userid,
       userName: data.username,
       email: email,
-      loggedIn: true
+      onlineSince: moment.now()
     }))
   }
 
