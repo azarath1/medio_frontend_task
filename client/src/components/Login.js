@@ -1,13 +1,19 @@
 import './Login.css';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../features/userSlice'
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState("Email");
   const [password, setPassword] = useState("Password");
+  // const [userid, setId] = useState(0);
+  // const [username, setUser] = useState("");
+  
+  const dispatch = useDispatch();
 
   async function handleSubmit(event) {
     event.preventDefault();
-    await fetch('http://localhost:4000/login', {
+    const response = await fetch('http://localhost:4000/login', {
       method: 'post',
       mode: 'cors',
       headers: {
@@ -20,9 +26,17 @@ function Login() {
         "password": password
       }),
     })
-      .then(res => res.json())
-      .then(console.log);
-  }
+    const data = await response.json();
+      // .then(res => res.json())
+      // .then(console.log);
+    
+    await dispatch(login({
+      userId: data.userid,
+      userName: data.username,
+      email: email,
+      loggedIn: true
+    }))
+    }
 
   return (
     <div className="Login">
