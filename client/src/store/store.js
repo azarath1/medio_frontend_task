@@ -14,4 +14,8 @@ export default configureStore({
     reducer: {
         user: persistedReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 });
