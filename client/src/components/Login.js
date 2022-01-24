@@ -6,9 +6,6 @@ import { login } from '../features/userSlice'
 const Login = () => {
   const [email, setEmail] = useState("Email");
   const [password, setPassword] = useState("Password");
-  // const [userid, setId] = useState(0);
-  // const [username, setUser] = useState("");
-  
   const dispatch = useDispatch();
 
   async function handleSubmit(event) {
@@ -27,16 +24,13 @@ const Login = () => {
       }),
     })
     const data = await response.json();
-      // .then(res => res.json())
-      // .then(console.log);
-    
     await dispatch(login({
       userId: data.userid,
       userName: data.username,
       email: email,
       loggedIn: true
     }))
-    }
+  }
 
   return (
     <div className="Login">
