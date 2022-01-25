@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import './Cities.css';
+import { useDispatch } from 'react-redux';
+import { logout } from '../features/userSlice';
 
 const Cities = () => {
   const [cities, setDetails] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getData();
@@ -25,7 +28,8 @@ const Cities = () => {
 
   if (cities) {
     return (
-      <div>
+      <div className='parent-container'>
+        <div><button onClick={quit}>Kilépés</button></div>
         <h1>Városok</h1>
       <div className='container'>
         {cities.map(city =>
@@ -42,10 +46,15 @@ const Cities = () => {
     );
   }
   return (
-    <div>
+    <div className='parent-container'>
       <p>Loading data...</p>
     </div>
   );
+
+  function quit() {
+    dispatch(logout());
+  }
+
 }
 
 export default Cities;
