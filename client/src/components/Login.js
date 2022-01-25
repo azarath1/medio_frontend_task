@@ -44,6 +44,9 @@ const Login = () => {
           <button type="submit" id="login-button">Login</button>
         </form>
       </div>
+      <div>
+        <button>Cities</button>
+      </div>
     </div>
   );
 }
