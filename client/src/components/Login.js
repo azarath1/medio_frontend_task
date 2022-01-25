@@ -5,8 +5,8 @@ import { login } from '../features/userSlice'
 import moment from 'moment';
 
 const Login = () => {
-  const [email, setEmail] = useState("Email");
-  const [password, setPassword] = useState("Password");
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const dispatch = useDispatch();
 
   async function handleSubmit(event) {
