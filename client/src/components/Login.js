@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../features/userSlice'
 import moment from 'moment';
+import { cityview } from '../features/userSlice';
 
 const Login = () => {
   const [email, setEmail] = useState(null);
@@ -35,7 +36,8 @@ const Login = () => {
 
   return (
     <div className="Login">
-      <div className="container">
+      <button className='cities' onClick={cityViewer}>Városok</button>
+      <div className="formcontainer">
         <h1>Welcome</h1>
 
         <form className="form" onSubmit={handleSubmit}>
@@ -46,6 +48,10 @@ const Login = () => {
       </div>
     </div>
   );
+
+  function cityViewer() {
+    dispatch(cityview());
+  }
 }
 
 export default Login;
