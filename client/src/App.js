@@ -1,17 +1,15 @@
 import React from 'react';
 import { useSelector } from "react-redux";
-// import Cities from './components/Cities';
+import Cities from './components/Cities';
 import Login from "./components/Login";
 import UserPage from './components/UserPage';
 import { selectUser } from "./features/userSlice";
 
 const App = () => {
     const user = useSelector(selectUser);
-
     return (
         <div>
-            <button>Cities</button>
-            {user ? <UserPage /> : <Login />}
+            {user === "city" ? <Cities /> : (user ? <UserPage /> : <Login />)}
         </div>
     );
 };
