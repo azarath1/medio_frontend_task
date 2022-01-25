@@ -21,9 +21,6 @@ const UserPage = () => {
         <p id="online">Online since: <span>{moment().diff(user.onlineSince, 'days')} days</span></p>{/* checking online presence for days */}
         <button onClick={(event) => handleLogout(event)}>Logout</button>
       </div>
-      <div>
-        <button>Cities</button>
-      </div>
     </div>
   );
 }
