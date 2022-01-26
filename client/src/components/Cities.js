@@ -6,6 +6,7 @@ import { logout } from '../features/userSlice';
 const Cities = () => {
   const [cities, setDetails] = useState(null);
   const dispatch = useDispatch();
+  const [selectedmegye, setMegye] = useState(null);
 
   useEffect(() => {
     getData();
