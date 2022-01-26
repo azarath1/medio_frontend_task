@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../features/userSlice'
 import moment from 'moment';
-import { cityview } from '../features/userSlice';
+import { cityview, loginSite } from '../features/siteInfo';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -32,11 +34,13 @@ const Login = () => {
       email: email,
       onlineSince: moment.now()
     }))
+    await dispatch(loginSite());
+    navigate("/userpage");
   }
 
   return (
     <div className="Login">
-      <button className='cities' onClick={cityViewer}>Városok</button>
+      <Link onClick={cityViewer} to="/cities"><button>Városok</button></Link>
       <div className="formcontainer">
         <h1>Welcome</h1>
 
