@@ -8,9 +8,13 @@ import { selectUser } from "./features/userSlice";
 const App = () => {
     const user = useSelector(selectUser);
     return (
-        <div>
-            {user === "city" ? <Cities /> : (user ? <UserPage /> : <Login />)}
-        </div>
+        <Routes>
+            <Route path="/" element={<Login />} />
+            <Route element={<ProtectedRoutes />}>
+                <Route path="/userpage" element={<UserPage />} />
+            </Route>
+            <Route path="/cities" element={<Cities />} />
+        </Routes>
     );
 };
 
