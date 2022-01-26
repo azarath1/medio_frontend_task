@@ -32,7 +32,7 @@ const Cities = () => {
       searchMegye !== '' ?
         setDetails(data.cities.filter(city => city.megyeid === searchMegye))
         :
-      setDetails(data.cities);
+        setDetails(data.cities);
 
     }
   }, [selectedmegye, searchMegye]);
@@ -44,7 +44,7 @@ const Cities = () => {
   if (cities && selectedmegye === null) {
     return (
       <div className='parent-container'>
-        <div><button onClick={quit}>Kilépés</button></div>
+        <div>  <Link onClick={GoBack} to="/userpage"><button>Vissza</button></Link></div>
         <h1>Városok</h1>
         <div className='container'>
           {cities.map(city =>
@@ -63,9 +63,9 @@ const Cities = () => {
   if (cities && selectedmegye) {
     return (
       <div className='parent-container'>
-        <div><button onClick={quit}>Kilépés</button></div>
+        <div><Link onClick={GoBack} to="/userpage"><button>Vissza</button></Link></div>
         <h1>Városok</h1>
-         <div className='container'> {/* conditional mapping based on selected value */}
+        <div className='container'> {/* conditional mapping based on selected value */}
           {cities.map(city => city.megyeid === selectedmegye ?
             <div key={city.id} className='card' style={{ borderColor: 'lime' }} data-megye={city.megyeid} onClick={highLightSimilars}>
               <div className='header' value={city.megyeid}>
@@ -93,13 +93,13 @@ const Cities = () => {
     </div>
   );
 
-  function quit() {
-    dispatch(logout());
-  }
-
   function highLightSimilars(event) {
     event.preventDefault();
     setMegye(event.target.dataset.megye);
+  }
+
+  function GoBack() {
+    user ? dispatch(loginSite()) : dispatch(logoutSite());
   }
 
 }
