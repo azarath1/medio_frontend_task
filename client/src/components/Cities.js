@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
 import './Cities.css';
 import { useDispatch } from 'react-redux';
-import { logout } from '../features/userSlice';
+import { Link, useSearchParams } from 'react-router-dom';
+import { selectUser } from '../features/userSlice';
+import { useSelector } from 'react-redux';
+import { citybymegye, loginSite, logoutSite } from '../features/siteInfo';
 
 const Cities = () => {
   const [cities, setDetails] = useState(null);
   const dispatch = useDispatch();
   const [selectedmegye, setMegye] = useState(null);
+  const [searchParams] = useSearchParams();
+  const searchMegye = searchParams.get('megye') || '';
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     getData();
@@ -23,9 +29,17 @@ const Cities = () => {
           },
         });
       const data = await response.json();
+      searchMegye !== '' ?
+        setDetails(data.cities.filter(city => city.megyeid === searchMegye))
+        :
       setDetails(data.cities);
+
     }
-  }, [selectedmegye]);
+  }, [selectedmegye, searchMegye]);
+
+  if (searchMegye !== '') {
+    dispatch(citybymegye());
+  }
 
   if (cities && selectedmegye === null) {
     return (
