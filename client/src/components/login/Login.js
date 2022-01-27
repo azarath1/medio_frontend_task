@@ -1,10 +1,10 @@
 import './Login.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../features/userSlice'
 import moment from 'moment';
-import { cityview, loginSite } from '../features/siteInfo';
+import { cityview, loginSite } from '../../store/slices/siteInfo';
 import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../../store/slices/userSlice';
 
 const Login = () => {
   const [email, setEmail] = useState(null);
@@ -42,12 +42,11 @@ const Login = () => {
     <div className="Login">
       <Link onClick={cityViewer} to="/cities"><button>Városok</button></Link>
       <div className="formcontainer">
-        <h1>Welcome</h1>
-
+        <h1>Üdvözöljük!</h1>
         <form className="form" onSubmit={handleSubmit}>
-          <input name="email" type="text" placeholder="Email" onChange={event => setEmail(event.target.value)}></input>
-          <input name="password" type="password" placeholder="Password" onChange={event => setPassword(event.target.value)}></input>
-          <button type="submit" id="login-button">Login</button>
+          <input name="email" type="text" placeholder="Email cím" onChange={event => setEmail(event.target.value)}></input>
+          <input name="password" type="password" placeholder="Jelszó" onChange={event => setPassword(event.target.value)}></input>
+          <button type="submit" id="login-button">Bejelentkezés</button>
         </form>
       </div>
     </div>

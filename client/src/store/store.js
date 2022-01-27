@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import siteInfoReducer from '../features/siteInfo';
-import userReducer from '../features/userSlice';
+import siteInfoReducer from './slices/siteInfo';
+import userReducer from './slices/userSlice';
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
 
