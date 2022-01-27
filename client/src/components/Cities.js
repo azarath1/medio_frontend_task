@@ -68,7 +68,7 @@ const Cities = () => {
         <div className='container'> {/* conditional mapping based on selected value */}
           {cities.map(city => city.megyeid === selectedmegye ?
             <div key={city.id} className='card' style={{ borderColor: 'lime' }} data-megye={city.megyeid} onClick={highLightSimilars}>
-              <div className='header' value={city.megyeid}>
+              <div className='header' value={city.megyeid} onClick={highLightSimilars}>
                 <strong value={city.megyeid}><p value={city.megyeid}>{city.vnev}</p></strong>
               </div>
               <p value={city.megyeid}>Város azonosító: {city.id}</p>
@@ -95,7 +95,7 @@ const Cities = () => {
 
   function highLightSimilars(event) {
     event.preventDefault();
-    setMegye(event.target.dataset.megye);
+    setMegye(event.currentTarget.dataset.megye);
   }
 
   function GoBack() {
