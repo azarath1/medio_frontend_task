@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-import { selectUser } from "./userSlice";
+import { selectUser } from ".././store/slices/userSlice";
 
 const useAuth = () => {
     const user = useSelector(selectUser);

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, selectUser } from '../features/userSlice';
+import { logout, selectUser } from '../../store/slices/userSlice';
 import moment from 'moment';
-import './Login.css';
-import { cityview, logoutSite } from '../features/siteInfo';
+import '../login/Login.css';
+import { cityview, logoutSite } from '../../store/slices/siteInfo';
 import { Link } from 'react-router-dom';
 
 const UserPage = () => {
@@ -20,10 +20,10 @@ const UserPage = () => {
     <div className="Login">
       <Link onClick={cityViewer} to="/cities"><button>Városok</button></Link>
       <div className="formcontainer">
-        <h1>Welcome <span>{user.userName}</span>!</h1>
-        <p>Username: {user.userName}</p>
+        <h1>Üdv <span>{user.userName}</span>!</h1>
+        <p>Felhasználónév: {user.userName}</p>
         <p>Email: {user.email}</p>
-        <p id="online">Online since: <span>{moment().diff(user.onlineSince, 'days')} days</span></p>{/* checking online presence for days */}
+        <p id="online">Online: <span>{moment().diff(user.onlineSince, 'days')} napja</span></p>{/* checking online presence for days */}
         <Link to="/" onClick={(event) => handleLogout(event)}><button>Kilépés</button></Link>
       </div>
     </div>

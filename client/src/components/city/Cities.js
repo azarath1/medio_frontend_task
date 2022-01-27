@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import './Cities.css';
 import { useDispatch } from 'react-redux';
 import { Link, useSearchParams } from 'react-router-dom';
-import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
-import { citybymegye, loginSite, logoutSite } from '../features/siteInfo';
+import { citybymegye, loginSite, logoutSite } from '../../store/slices/siteInfo';
+import { selectUser } from '../../store/slices/userSlice';
 
 const Cities = () => {
   const [cities, setDetails] = useState(null);
