@@ -2,14 +2,15 @@ import './Login.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../features/userSlice'
+import moment from 'moment';
+import { cityview, loginSite } from '../features/siteInfo';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [email, setEmail] = useState("Email");
-  const [password, setPassword] = useState("Password");
-  // const [userid, setId] = useState(0);
-  // const [username, setUser] = useState("");
-  
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -27,20 +28,20 @@ const Login = () => {
       }),
     })
     const data = await response.json();
-      // .then(res => res.json())
-      // .then(console.log);
-    
     await dispatch(login({
       userId: data.userid,
       userName: data.username,
       email: email,
-      loggedIn: true
+      onlineSince: moment.now()
     }))
-    }
+    await dispatch(loginSite());
+    navigate("/userpage");
+  }
 
   return (
     <div className="Login">
-      <div className="container">
+      <Link onClick={cityViewer} to="/cities"><button>Városok</button></Link>
+      <div className="formcontainer">
         <h1>Welcome</h1>
 
         <form className="form" onSubmit={handleSubmit}>
@@ -51,6 +52,10 @@ const Login = () => {
       </div>
     </div>
   );
+
+  function cityViewer() {
+    dispatch(cityview());
+  }
 }
 
 export default Login;

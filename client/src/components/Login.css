@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.container{
+.formcontainer{
 	max-width: 600px;
 	margin: 0 auto;
 	padding: 80px 0;
@@ -69,4 +69,3 @@ button{
 button:hover{
   background-color: rgb(124, 255, 130);
 }
-    
